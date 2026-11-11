@@ -3,269 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdulrahman — Master Brainer · AI & Automation Freelancer</title>
-<meta name="description" content="Hire Abdulrahman (aka Master Brainer) to build AI agents, RAG systems and on-prem LLM infrastructure. Insert coin to book.">
+<title>Abdulrahman — Master Brainer · Creative AI Developer</title>
+<meta name="description" content="Abdulrahman (aka Master Brainer) — freelance AI engineer. Agents, RAG systems, on-prem LLM infrastructure. Available for freelance work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script>if(/[?&]instant=1/.test(location.search))document.documentElement.style.scrollBehavior='auto';</script>
 <style>
+/* ============ DUOTONE SYSTEM — pink field / black ink, invert on toggle ============ */
 :root{
-  --bg:#120e1f; --bg2:#1a1430; --panel:#221a3d; --ink:#f5f0ff; --muted:#a99cc9;
-  --pink:#ff3fa4; --cyan:#31e5ff; --lime:#9dff3f; --gold:#ffc93f; --line:#3a2f63;
-  --pix:'Press Start 2P',monospace; --body:'Space Grotesk',system-ui,sans-serif;
+  --pink:#f5144f; --black:#0b0505;
+  --field:var(--pink); --ink:var(--black);
+  --disp:'Big Shoulders Display',sans-serif; --body:'Space Grotesk',system-ui,sans-serif;
+  --rail:14px; --cell:64px;
 }
+html[data-invert="1"]{ --field:var(--black); --ink:var(--pink); }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);overflow-x:hidden;line-height:1.6}
-body::after{ /* CRT scanlines + vignette */
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 1px,transparent 1px 3px),
-             radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.42) 100%);
-}
-::selection{background:var(--pink);color:#fff}
-a{color:var(--cyan);text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.pix{font-family:var(--pix);font-weight:400;letter-spacing:.02em}
+body{background:var(--field);color:var(--ink);font-family:var(--body);overflow-x:hidden;line-height:1.6}
+::selection{background:var(--ink);color:var(--field)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit}
 
-/* ---------- boot screen ---------- */
-#boot{position:fixed;inset:0;z-index:100;background:#05030c;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:26px;text-align:center;padding:24px;transition:opacity .5s}
-#boot.done{opacity:0;pointer-events:none}
-#boot .logo{font-family:var(--pix);font-size:clamp(18px,5vw,34px);color:var(--gold);
-  text-shadow:3px 3px 0 var(--pink),6px 6px 0 rgba(49,229,255,.35)}
-#bootlog{font-family:var(--pix);font-size:10px;line-height:2.2;color:var(--lime);min-height:110px;max-width:640px}
-#bootlog span{display:block;opacity:0}
-#bootlog span.on{opacity:1}
-.blink{animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-#startbtn{font-family:var(--pix);font-size:clamp(13px,3vw,18px);padding:20px 34px;background:var(--pink);
-  color:#fff;border:3px solid #fff;box-shadow:6px 6px 0 #000;cursor:pointer;display:none}
-#startbtn.show{display:inline-block}
-#startbtn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 #000}
+/* letterbox poster frame */
+#frame{position:fixed;inset:0;pointer-events:none;z-index:80;
+  border:var(--rail) solid var(--ink)}
+#frame::after{content:"";position:absolute;inset:6px;border:1px solid var(--field);opacity:.9}
+#frame::before{content:"";position:absolute;inset:calc(var(--rail) + 5px);border:1px solid var(--ink);opacity:.35}
 
-/* ---------- header ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(18,14,31,.92);backdrop-filter:blur(6px);
-  border-bottom:2px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:14px}
-.logo-lock{display:flex;align-items:center;gap:10px;font-family:var(--pix);font-size:12px;color:var(--gold)}
-.logo-lock .chip{width:30px;height:30px;background:var(--pink);border:2px solid #fff;box-shadow:3px 3px 0 #000;
-  display:grid;place-items:center;color:#fff;font-size:11px}
-nav{display:flex;gap:22px;align-items:center}
-nav a{font-family:var(--pix);font-size:9px;color:var(--muted)}
-nav a:hover{color:var(--cyan)}
-.coinbtn{font-family:var(--pix);font-size:9px;background:var(--gold);color:#1a1430;border:2px solid #fff;
-  box-shadow:4px 4px 0 #000;padding:11px 14px;cursor:pointer;display:inline-block}
-.coinbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
-#burger{display:none;background:none;border:2px solid var(--line);color:var(--ink);font-size:20px;
-  width:44px;height:44px;cursor:pointer}
-#sound{background:none;border:2px solid var(--line);color:var(--ink);width:44px;height:44px;cursor:pointer;font-size:17px}
+main{background:var(--field);position:relative;z-index:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
 
-/* ---------- ticker ---------- */
-.ticker{background:var(--pink);color:#12061a;border-bottom:3px solid #000;overflow:hidden;white-space:nowrap;padding:9px 0}
-.ticker .track{display:inline-block;font-family:var(--pix);font-size:10px;animation:slide 22s linear infinite}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker b{margin:0 18px;color:#fff}
+/* hairline grid field */
+.gridfield{background-image:
+  linear-gradient(var(--ink) 1px,transparent 1px),
+  linear-gradient(90deg,var(--ink) 1px,transparent 1px);
+  background-size:var(--cell) var(--cell);
+  background-position:center top;}
 
-/* ---------- hero ---------- */
-#hero{padding:84px 0 70px;position:relative}
-#hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
-.eyebrow{font-family:var(--pix);font-size:10px;color:var(--lime);margin-bottom:22px}
-.eyebrow i{color:var(--pink);font-style:normal}
-h1{font-family:var(--pix);font-size:clamp(24px,4.6vw,44px);line-height:1.35;margin-bottom:8px}
-h1 .a{color:var(--gold);text-shadow:4px 4px 0 var(--pink)}
-h1 .b{display:block;font-size:clamp(12px,2vw,18px);color:var(--cyan);margin-top:16px}
-.lede{color:var(--muted);font-size:clamp(16px,2vw,19px);max-width:52ch;margin:18px 0 30px}
-.lede strong{color:var(--ink)}
-.cta-row{display:flex;gap:16px;flex-wrap:wrap}
-.cta-row .coinbtn{font-size:11px;padding:16px 22px}
-.ghostbtn{font-family:var(--pix);font-size:11px;padding:16px 22px;background:transparent;color:var(--cyan);
-  border:2px dashed var(--cyan);cursor:pointer}
-.cabinet{border:3px solid var(--line);background:linear-gradient(180deg,var(--bg2),var(--panel));
-  box-shadow:10px 10px 0 rgba(0,0,0,.55);padding:18px;text-align:center;position:relative}
-.cabinet .marq{font-family:var(--pix);font-size:9px;color:var(--gold);letter-spacing:.08em;margin-bottom:14px}
-#avatar{width:100%;max-width:260px;image-rendering:pixelated;border:2px solid #000;background:#05030c}
-.cabinet .ready{font-family:var(--pix);font-size:9px;color:var(--lime);margin-top:14px}
+/* type roles */
+.disp{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:.01em}
+.fine{font-size:13.5px;opacity:.75}
 
-/* ---------- section furniture ---------- */
-section{padding:76px 0}
-.sechead{margin-bottom:40px}
-.sechead .tag{font-family:var(--pix);font-size:9px;color:var(--pink);margin-bottom:14px;display:block}
-.sechead h2{font-family:var(--pix);font-size:clamp(16px,3vw,26px);line-height:1.5}
-.sechead h2 em{font-style:normal;color:var(--cyan)}
-.fine{color:var(--muted);font-size:13px;margin-top:10px}
+/* corner rails */
+.topbar{position:relative;z-index:40;display:flex;justify-content:space-between;align-items:center;
+  padding:34px 40px 0;font-family:var(--disp);font-weight:700;text-transform:uppercase;
+  letter-spacing:.18em;font-size:12px}
+.topbar .right{display:flex;gap:22px;align-items:center}
+.navlinks{display:flex;gap:22px;align-items:center}
+.navlinks a{border-bottom:1px solid transparent;padding-bottom:2px}
+.navlinks a:hover{border-bottom-color:var(--ink)}
+#invert{border:1px solid var(--ink);padding:5px 12px;font-family:var(--disp);font-weight:700;
+  text-transform:uppercase;letter-spacing:.18em;font-size:11px}
+#invert:hover{background:var(--ink);color:var(--field)}
+#burger{display:none;font-size:20px;line-height:1;padding:5px 11px;border:1px solid var(--ink)}
 
-/* ---------- player card ---------- */
-#player .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px}
-.bio p{margin-bottom:16px;color:var(--muted)}
-.bio p strong{color:var(--ink)}
-.bio .quote{border-left:4px solid var(--gold);padding-left:16px;color:var(--ink);font-size:17px}
-.stats{border:3px solid var(--line);background:var(--bg2);padding:26px;box-shadow:8px 8px 0 rgba(0,0,0,.5)}
-.stats h3{font-family:var(--pix);font-size:11px;color:var(--gold);margin-bottom:20px}
-.stat{margin-bottom:16px}
-.stat .lab{display:flex;justify-content:space-between;font-family:var(--pix);font-size:8px;margin-bottom:6px;color:var(--ink)}
-.stat .lab i{font-style:normal;color:var(--muted)}
-.bar{height:14px;background:#0a0718;border:2px solid #000;position:relative}
-.bar i{position:absolute;inset:2px auto 2px 2px;background:repeating-linear-gradient(45deg,var(--c) 0 6px,transparent 6px 8px),var(--c);
-  width:0;transition:width 1.2s cubic-bezier(.2,.9,.3,1)}
+/* ============ HERO — poster mode ============ */
+#hero{position:relative;min-height:calc(100svh - 24px);display:flex;flex-direction:column}
+#hero .field{flex:1;position:relative;overflow:hidden}
+.bin-rain{position:absolute;top:-120%;width:34px;height:340%;display:flex;flex-direction:column;
+  align-items:center;color:var(--ink);font-family:var(--disp);font-weight:500;font-size:22px;line-height:1.25;
+  animation:rain 26s linear infinite;opacity:.85;user-select:none;letter-spacing:.1em}
+@keyframes rain{from{transform:translateY(0)}to{transform:translateY(33.33%)}}
+.disc{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
+  width:min(300px,46vw);aspect-ratio:1;border-radius:50%;background:var(--ink);
+  display:grid;place-items:center;text-align:center}
+.disc .go{font-family:var(--disp);font-weight:900;color:var(--field);
+  font-size:clamp(64px,11vw,118px);letter-spacing:.02em;line-height:.8}
+.disc .go small{display:block;font-size:11px;font-weight:700;letter-spacing:.34em;margin-top:18px;padding:0 16px;text-transform:uppercase}
+.hero-side{position:absolute;color:var(--ink);font-family:var(--disp);font-weight:700;text-transform:uppercase;
+  letter-spacing:.3em;font-size:11px;writing-mode:vertical-rl;opacity:.85}
+.hero-side.l{left:30px;top:50%;transform:translateY(-50%) rotate(180deg)}
+.hero-side.r{right:30px;top:50%;transform:translateY(-50%)}
+.hero-hire{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);white-space:nowrap}
+.coinbtn{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(15px,2vw,19px);
+  letter-spacing:.12em;padding:16px 34px;border-radius:999px;background:var(--ink);color:var(--field);
+  border:1px solid var(--ink);transition:transform .12s}
+.coinbtn:hover{transform:translateY(-2px)}
+.coinbtn.ghost{background:transparent;color:var(--ink)}
+/* grid-cut footer band inside hero */
+.hero-band{border-top:2px solid var(--ink);padding:18px 0;text-align:center;background:var(--field)}
+.monogram{font-family:var(--disp);font-weight:900;font-size:26px;letter-spacing:.42em;padding-left:.42em;color:var(--ink)}
 
-/* ---------- missions ---------- */
-#missions{background:linear-gradient(180deg,var(--bg),#0d0a1a)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.cartridge{border:3px solid var(--line);background:var(--panel);box-shadow:8px 8px 0 rgba(0,0,0,.55);
-  display:flex;flex-direction:column;position:relative;transition:transform .15s,border-color .15s}
-.cartridge:hover{transform:translate(-3px,-3px);border-color:var(--c,var(--pink))}
-.cart-strip{height:14px;background:var(--c,var(--pink));border-bottom:3px solid #000}
-.cartridge .body{padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;flex:1}
-.rarity{font-family:var(--pix);font-size:8px;color:var(--c,var(--pink));letter-spacing:.1em}
-.cartridge h3{font-family:var(--pix);font-size:12px;line-height:1.7}
-.cartridge p{color:var(--muted);font-size:15px;flex:1}
-.price{font-family:var(--pix);font-size:9px;color:var(--gold)}
-.cartbtn{font-family:var(--pix);font-size:9px;padding:13px;background:var(--c,var(--pink));color:#12061a;
-  border:2px solid #fff;box-shadow:4px 4px 0 #000;cursor:pointer;margin-top:6px}
-.cartbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+/* ============ sections ============ */
+section{position:relative;padding:110px 0;border-top:2px solid var(--ink)}
+.sechead{display:flex;align-items:baseline;gap:26px;margin-bottom:48px}
+.sechead .num{font-family:var(--disp);font-weight:900;font-size:14px;letter-spacing:.2em}
+.sechead h2{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(34px,6vw,72px);line-height:.9}
+.sechead .fine{margin-left:auto;max-width:34ch;text-align:right}
 
-/* ---------- inventory ---------- */
-.inv{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.item{border:2px solid var(--r,var(--line));background:var(--bg2);padding:18px 16px;text-align:center;
-  box-shadow:5px 5px 0 rgba(0,0,0,.5)}
-.item .ico{font-size:26px;display:block;margin-bottom:10px}
-.item .nm{font-family:var(--pix);font-size:8px;line-height:1.8;color:var(--ink)}
-.item .rr{font-family:var(--pix);font-size:7px;color:var(--r,var(--muted));margin-top:8px;display:block}
-.leg{--r:var(--gold)} .epic{--r:var(--pink)} .rare{--r:var(--cyan)}
+/* about: giant split display + story */
+#about .cols{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.splitword{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(60px,9vw,110px);line-height:.86}
+.splitword span{display:block}
+.story p{margin-bottom:20px;font-size:16.5px;max-width:56ch}
+.story .lede{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(20px,2.4vw,28px);
+  line-height:1.15;letter-spacing:.02em;margin-bottom:26px}
+.story strong{font-weight:700}
+.story .since{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.18em;
+  font-size:14px;border:1px solid var(--ink);display:inline-block;padding:10px 18px;margin-top:6px}
 
-/* ---------- levels ---------- */
-#levels .cards{grid-template-columns:repeat(2,1fr)}
-.level{border:3px solid var(--line);background:var(--panel);padding:26px;box-shadow:8px 8px 0 rgba(0,0,0,.55);position:relative}
-.level .num{position:absolute;top:-16px;left:18px;font-family:var(--pix);font-size:10px;background:var(--cyan);
-  color:#0a0718;padding:6px 10px;border:2px solid #000}
-.level h3{font-family:var(--pix);font-size:11px;margin:10px 0 12px;line-height:1.8}
-.level p{color:var(--muted);font-size:15px}
-.level .clear{font-family:var(--pix);font-size:8px;color:var(--lime);margin-top:14px;display:inline-block}
+/* rule-divided rows (missions / inventory / levels / receipts) */
+.rows{border-top:1px solid var(--ink)}
+.row{display:grid;align-items:center;border-bottom:1px solid var(--ink);position:relative;
+  padding:26px 18px;gap:24px}
+.row .rnum{font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.18em;opacity:.6}
+.row h3{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(24px,3vw,38px);line-height:.95}
+.row .rmeta{font-size:14.5px;opacity:.85}
+.row .rprice{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:12px;white-space:nowrap}
+.row .go{justify-self:end;font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.14em;
+  border:1px solid currentColor;border-radius:999px;padding:10px 20px;white-space:nowrap}
+.row.hoverable{cursor:pointer}
+.row.hoverable:hover{background:var(--ink);color:var(--field)}
+.row.mission{grid-template-columns:64px 1.2fr 2fr 1fr 130px}
+.row.inv{grid-template-columns:64px 1fr 1fr;gap:20px;padding:18px}
+.row.inv h3{font-size:clamp(18px,2vw,24px)}
+.row.inv .rr{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.24em;font-size:11px;justify-self:end}
+.row.level{grid-template-columns:64px 1.2fr 2fr 140px}
+.row.level .clear{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:11px;justify-self:end}
+.row.receipt{grid-template-columns:64px 1fr auto;padding:20px 18px}
+.row.receipt .who{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:13px;white-space:nowrap}
+.row.receipt h3{font-size:clamp(16px,1.8vw,21px)}
+.stat{display:grid;grid-template-columns:64px 1.2fr 2fr;gap:24px;align-items:center;border-bottom:1px solid var(--ink);padding:16px 18px}
+.stat h3{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:16px;letter-spacing:.06em}
+.segbar{display:flex;gap:5px}
+.segbar i{flex:1;height:16px;border:1px solid var(--ink)}
+.segbar i.on{background:var(--ink)}
 
-/* ---------- process strip ---------- */
-.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid var(--line);background:var(--bg2)}
-.proc div{padding:22px 18px;border-right:2px dashed var(--line)}
-.proc div:last-child{border-right:0}
-.proc .pnum{font-family:var(--pix);font-size:16px;color:var(--pink);display:block;margin-bottom:10px}
-.proc .ptx{font-family:var(--pix);font-size:8px;line-height:2;color:var(--ink)}
-.proc .psub{font-size:13px;color:var(--muted);margin-top:8px;display:block}
+/* ============ FOOTER — kinetic CTA ============ */
+footer{background:var(--field);border-top:2px solid var(--ink);text-align:center;padding:120px 0 60px;position:relative}
+.rock{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(48px,11vw,150px);
+  line-height:.9;letter-spacing:.04em;margin-bottom:38px}
+.rock span{display:block}
+.contact-line{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.22em;
+  font-size:clamp(13px,1.6vw,16px);margin-bottom:30px}
+.contact-line a{border-bottom:1px solid var(--ink)}
+.links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:0 0 46px}
+.links a{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:11px;
+  border:1px solid var(--ink);padding:11px 18px}
+.links a:hover{background:var(--ink);color:var(--field)}
+footer .monogram{margin:26px 0 10px}
+footer .tiny{font-size:12px;opacity:.7}
 
-/* ---------- footer / continue ---------- */
-footer{border-top:3px solid var(--line);padding:70px 0 50px;background:#0d0a1a;text-align:center}
-footer .big{font-family:var(--pix);font-size:clamp(16px,3.4vw,28px);color:var(--gold);margin-bottom:26px;line-height:1.6}
-.links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
-.links a{font-family:var(--pix);font-size:9px;border:2px solid var(--line);padding:13px 18px;color:var(--ink)}
-.links a:hover{border-color:var(--cyan);color:var(--cyan)}
-footer .tiny{color:var(--muted);font-size:12px}
-
-/* ---------- modal ---------- */
-#modal{position:fixed;inset:0;z-index:90;background:rgba(5,3,12,.85);display:none;align-items:center;justify-content:center;padding:18px}
+/* ============ modal ============ */
+#modal{position:fixed;inset:0;z-index:95;background:rgba(11,5,5,.86);display:none;align-items:center;justify-content:center;padding:24px}
 #modal.open{display:flex}
-.mbox{background:var(--bg2);border:3px solid var(--gold);box-shadow:12px 12px 0 rgba(0,0,0,.7);width:min(760px,100%);height:min(680px,90vh);position:relative;display:flex;flex-direction:column}
-.mhead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:3px solid var(--line)}
-.mhead .t{font-family:var(--pix);font-size:10px;color:var(--gold)}
-#mclose{background:var(--pink);color:#fff;border:2px solid #fff;font-family:var(--pix);font-size:10px;padding:9px 12px;cursor:pointer}
+.mbox{background:var(--field);border:2px solid var(--ink);box-shadow:14px 14px 0 var(--ink);
+  width:min(760px,100%);height:min(680px,88vh);display:flex;flex-direction:column}
+.mhead{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:2px solid var(--ink);
+  font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.2em;font-size:13px}
+#mclose{font-family:var(--disp);font-weight:900;background:var(--ink);color:var(--field);padding:8px 16px;letter-spacing:.1em}
 #mframe{flex:1;border:0;width:100%;background:#fff}
-#mempty{flex:1;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;text-align:center;padding:30px}
-#mempty .pix{font-size:11px;color:var(--cyan);line-height:2}
-#mempty p{color:var(--muted);max-width:44ch}
+#mempty{flex:1;display:none;flex-direction:column;gap:16px;align-items:center;justify-content:center;text-align:center;padding:30px}
+#mempty .disp{font-size:22px}
+#mempty p{max-width:44ch;color:var(--ink)}
+#mempty a{border-bottom:1px solid var(--ink)}
 
-/* ---------- responsive ---------- */
+/* ============ responsive ============ */
 @media (max-width:860px){
-  #hero .wrap,#player .wrap{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-  #levels .cards{grid-template-columns:1fr}
-  .inv{grid-template-columns:repeat(2,1fr)}
-  .proc{grid-template-columns:1fr 1fr}
-  .proc div{border-bottom:2px dashed var(--line)}
-  nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg2);flex-direction:column;
-    padding:18px;border-bottom:3px solid var(--line);gap:16px}
-  nav.open{display:flex}
+  :root{--rail:9px}
+  .wrap{padding:0 22px}
+  section{padding:72px 0}
+  .topbar{padding:20px 22px 0;font-size:10px}
+  .navlinks{display:none;position:absolute;top:54px;left:0;right:0;background:var(--field);
+    flex-direction:column;gap:14px;padding:18px 22px;border-bottom:2px solid var(--ink);z-index:50}
+  .navlinks.open{display:flex}
   #burger{display:block}
-  .coinbtn.hd{display:none}
+  #about .cols{grid-template-columns:1fr;gap:34px}
+  .sechead{flex-wrap:wrap}.sechead .fine{margin-left:0;text-align:left}
+  .row.mission{grid-template-columns:44px 1fr;row-gap:8px}
+  .row.mission .rmeta,.row.mission .rprice{grid-column:2}
+  .row .go{grid-column:2;justify-self:start}
+  .row.inv{grid-template-columns:44px 1fr}.row.inv .rr{grid-column:2;justify-self:start}
+  .row.level{grid-template-columns:44px 1fr}.row.level .clear{grid-column:2;justify-self:start}
+  .row.receipt{grid-template-columns:44px 1fr}.row.receipt .who{grid-column:2}
+  .stat{grid-template-columns:44px 1fr;row-gap:8px}.stat .segbar{grid-column:2}
+  .hero-side{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .ticker .track{animation:none}
+  .bin-rain{animation:none}
   *{transition:none!important;animation:none!important}
 }
 </style>
 </head>
 <body>
+<div id="frame" aria-hidden="true"></div>
+<main>
 
-<!-- BOOT -->
-<div id="boot">
-  <div class="logo">MASTER BRAINER</div>
-  <div id="bootlog" aria-live="polite">
-    <span>&gt; LOADING ABDULRAHMAN.EXE ......... OK</span>
-    <span>&gt; MOUNTING AI ARMS (x4) ........... OK</span>
-    <span>&gt; CALIBRATING BRAIN ............... 100%</span>
-    <span>&gt; COFFEE RESERVOIR ................ FULL</span>
+<!-- corner rails -->
+<div class="topbar">
+  <span>Abdulrahman — Master Brainer</span>
+  <div class="right">
+    <span class="navlinks" id="nav">
+      <a href="#about">About</a>
+      <a href="#missions">Missions</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#levels">Levels</a>
+      <a href="#receipts">Receipts</a>
+      <a href="#contact">Contact</a>
+    </span>
+    <button id="invert" title="invert colors">Invert</button>
+    <button id="burger" aria-label="menu">≡</button>
   </div>
-  <button id="startbtn" class="blink">▶ PRESS START</button>
 </div>
 
-<header>
-  <div class="wrap">
-    <div class="logo-lock"><span class="chip">MB</span><span>M:B</span></div>
-    <nav id="nav">
-      <a href="#missions">MISSIONS</a>
-      <a href="#player">PLAYER</a>
-      <a href="#inventory">INVENTORY</a>
-      <a href="#levels">LEVELS</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-    <div style="display:flex;gap:10px;align-items:center">
-      <button id="sound" aria-label="toggle sound" title="sound on/off">♪</button>
-      <a class="coinbtn hd" href="#missions">INSERT COIN</a>
-      <button id="burger" aria-label="menu">≡</button>
-    </div>
-  </div>
-</header>
-
-<div class="ticker" aria-hidden="true">
-  <span class="track" id="tick">
-    <b>★ NOW BOOKING</b><b>AI AGENTS</b><b>RAG SYSTEMS</b><b>ON-PREM LLM INFRA</b><b>BASED IN RIYADH · GMT+3</b><b>1 CREDIT = 1 KILLER BUILD</b>
-  </span>
-</div>
-
-<!-- HERO -->
+<!-- HERO poster -->
 <section id="hero">
-  <div class="wrap">
-    <div>
-      <div class="eyebrow">HI I'M <i>ABDULRAHMAN</i> — CODENAME: MASTER BRAINER</div>
-      <h1><span class="a">I BUILD AI THAT</span><br><span class="a">WORKS WHILE</span><br><span class="a">YOU SLEEP.</span>
-        <span class="b">AGENTS · RAG · ON-PREM LLM INFRA</span></h1>
-      <p class="lede">Freelance AI engineer & automation consultant. I ship <strong>agents that actually finish tasks</strong>, retrieval systems that answer from <strong>your</strong> documents (yes, Arabic ones), and <strong>private LLM rigs</strong> so your data never becomes someone else's training set. My home lab runs the stuff I build for you.</p>
-      <div class="cta-row">
-        <button class="coinbtn" data-book="intro">🪙 INSERT COIN — BOOK A CALL</button>
-        <button class="ghostbtn" onclick="document.getElementById('player').scrollIntoView()">READ PLAYER CARD ↓</button>
-      </div>
+  <div class="field gridfield">
+    <div class="bin-rain" id="rain1" aria-hidden="true" style="left:15%"></div>
+    <div class="bin-rain" id="rain2" aria-hidden="true" style="left:85%;animation-duration:34s"></div>
+    <div class="hero-side l">Coding globally from Riyadh · GMT+3</div>
+    <div class="hero-side r">Agents · RAG · On-prem LLM infra</div>
+    <div class="disc">
+      <div class="go">MB<small>Available for freelance work</small></div>
     </div>
-    <div class="cabinet">
-      <div class="marq">★ PLAYER SELECT ★</div>
-      <canvas id="avatar" width="16" height="16" aria-label="procedural pixel avatar"></canvas>
-      <div class="ready blink">READY PLAYER HIRE</div>
-    </div>
+    <div class="hero-hire"><button class="coinbtn" data-book="intro">Hire me — insert coin</button></div>
   </div>
+  <div class="hero-band"><div class="monogram">MB</div></div>
 </section>
 
-<!-- PLAYER CARD -->
-<section id="player">
+<!-- ABOUT -->
+<section id="about">
   <div class="wrap">
-    <div class="sechead" style="grid-column:1/-1"><span class="tag">// 01</span><h2>PLAYER <em>CARD</em></h2></div>
-    <div class="bio">
-      <p class="quote">"If it's repetitive, it should be automated. If it's intelligent, it should be automated <strong>and</strong> accountable."</p>
-      <p>I'm <strong>Abdulrahman</strong> — Saudi AI engineer working with founders, agencies and ops teams who want AI doing real work, not demo work.</p>
-      <p>Day job energy goes into self-hosted AI platforms: a full RAG stack for <strong>Arabic legal & business documents</strong>, running on my own GPU cluster. If it survives my own production use, it's good enough for yours.</p>
-      <p>I work solo and lean — you talk to the person building your system. No account-manager telephone game, no "let me get back to you from the agency".</p>
-    </div>
-    <div class="stats">
-      <h3>PLAYER STATS · SELF-GRADED, HONESTLY</h3>
-      <div class="stat"><div class="lab"><span>AGENTIC SYSTEMS</span><i>AUTONOMY LV</i></div><div class="bar"><i style="--c:var(--pink)" data-w="92"></i></div></div>
-      <div class="stat"><div class="lab"><span>RAG & RETRIEVAL</span><i>ACCURACY LV</i></div><div class="bar"><i style="--c:var(--cyan)" data-w="90"></i></div></div>
-      <div class="stat"><div class="lab"><span>ON-PREM LLM OPS</span><i>UPTIME LV</i></div><div class="bar"><i style="--c:var(--lime)" data-w="95"></i></div></div>
-      <div class="stat"><div class="lab"><span>ARABIC NLP</span><i>NATIVE LV</i></div><div class="bar"><i style="--c:var(--gold)" data-w="96"></i></div></div>
-      <div class="stat"><div class="lab"><span>FULL-STACK DELIVERY</span><i>SHIP LV</i></div><div class="bar"><i style="--c:var(--pink)" data-w="88"></i></div></div>
+    <div class="sechead"><span class="num">01</span><h2>About</h2>
+      <span class="fine">Freelance AI engineer &amp; automation consultant.</span></div>
+    <div class="cols">
+      <div class="splitword"><span>Creative</span><span>AI</span><span>Developer</span></div>
+      <div class="story">
+        <p class="lede">I collaborate with founders, agencies and ops teams to make AI do <strong>real work</strong> — not demo work.</p>
+        <p>I build <strong>agents that actually finish tasks</strong>, retrieval systems that answer from <strong>your</strong> documents (yes, Arabic ones), and <strong>private LLM rigs</strong> so your data never becomes someone else's training set.</p>
+        <p>I run everything on my own hardware: a full RAG stack for <strong>Arabic legal &amp; business documents</strong> on a self-hosted GPU cluster, plus a personal super-agent that files reports while I sleep. If it survives my own production use, it's good enough for yours.</p>
+        <p>I work solo and lean — you talk to the person building your system. No account-manager telephone game.</p>
+        <span class="since">Shipping AI from Riyadh</span>
+      </div>
     </div>
   </div>
 </section>
@@ -273,38 +243,29 @@ footer .tiny{color:var(--muted);font-size:12px}
 <!-- MISSIONS -->
 <section id="missions">
   <div class="wrap">
-    <div class="sechead"><span class="tag">// 02</span><h2>SELECT YOUR <em>MISSION</em></h2>
-      <p class="fine">Pick a cartridge. Your calendar opens. Pick a slot. I show up prepared.</p></div>
-    <div class="cards">
-      <div class="cartridge" style="--c:var(--cyan)">
-        <div class="cart-strip"></div>
-        <div class="body">
-          <span class="rarity">★ COMMON — FREE</span>
-          <h3>RECON CALL</h3>
-          <p>15 minutes. You pitch the idea, I tell you bluntly if AI is the answer, what it would take, and roughly what it costs. Zero pressure.</p>
-          <span class="price">0 SAR · 15 MIN</span>
-          <button class="cartbtn" data-book="intro">SELECT ▶</button>
-        </div>
+    <div class="sechead"><span class="num">02</span><h2>Missions</h2>
+      <span class="fine">Pick a row. The calendar opens. I show up prepared.</span></div>
+    <div class="rows">
+      <div class="row mission hoverable" data-book="intro">
+        <span class="rnum">001</span>
+        <h3>Recon Call</h3>
+        <span class="rmeta">15 minutes. You pitch the idea, I tell you bluntly if AI is the answer, what it takes, roughly what it costs.</span>
+        <span class="rprice">0 SAR · 15 min</span>
+        <button class="go">Go →</button>
       </div>
-      <div class="cartridge" style="--c:var(--pink)">
-        <div class="cart-strip"></div>
-        <div class="body">
-          <span class="rarity">★★ RARE — FIXED SCOPE</span>
-          <h3>GIG RUN</h3>
-          <p>One contained mission: a chatbot on your docs, an automation pipeline, an agent that kills a specific workflow. Fixed price, fixed scope, shipped fast.</p>
-          <span class="price">FROM QUOTE · DAYS–WEEKS</span>
-          <button class="cartbtn" data-book="gig">SELECT ▶</button>
-        </div>
+      <div class="row mission hoverable" data-book="gig">
+        <span class="rnum">002</span>
+        <h3>Gig Run</h3>
+        <span class="rmeta">One contained mission: chatbot on your docs, an automation pipeline, an agent that kills one workflow. Fixed price, fixed scope.</span>
+        <span class="rprice">From quote · days–weeks</span>
+        <button class="go">Go →</button>
       </div>
-      <div class="cartridge" style="--c:var(--gold)">
-        <div class="cart-strip"></div>
-        <div class="body">
-          <span class="rarity">★★★ LEGENDARY — PARTNERSHIP</span>
-          <h3>BOSS RAIDS</h3>
-          <p>Full build-outs: private LLM platforms, RAG products, agent fleets for your team or clients. Architecture → deploy → handover your crew can run without me.</p>
-          <span class="price">ENGAGEMENT · WEEKS–MONTHS</span>
-          <button class="cartbtn" data-book="boss">SELECT ▶</button>
-        </div>
+      <div class="row mission hoverable" data-book="boss">
+        <span class="rnum">003</span>
+        <h3>Boss Raid</h3>
+        <span class="rmeta">Full build-outs: private LLM platforms, RAG products, agent fleets. Architecture → deploy → handover your crew can run without me.</span>
+        <span class="rprice">Engagement · weeks–months</span>
+        <button class="go">Go →</button>
       </div>
     </div>
   </div>
@@ -313,17 +274,17 @@ footer .tiny{color:var(--muted);font-size:12px}
 <!-- INVENTORY -->
 <section id="inventory">
   <div class="wrap">
-    <div class="sechead"><span class="tag">// 03</span><h2>ITEM <em>INVENTORY</em></h2>
-      <p class="fine">The loadout I bring to your quest. Rarity reflects how often I reach for it.</p></div>
-    <div class="inv">
-      <div class="item leg"><span class="ico">🧠</span><span class="nm">ON-PREM LLM / vLLM CLUSTERS</span><span class="rr">LEGENDARY</span></div>
-      <div class="item leg"><span class="ico">📚</span><span class="nm">RAG · PGVECTOR · RERANKERS</span><span class="rr">LEGENDARY</span></div>
-      <div class="item leg"><span class="ico">🤖</span><span class="nm">AUTONOMOUS AGENTS</span><span class="rr">LEGENDARY</span></div>
-      <div class="item epic"><span class="ico">🕌</span><span class="nm">ARABIC NLP & LEGAL DOCS</span><span class="rr">EPIC</span></div>
-      <div class="item epic"><span class="ico">⚡</span><span class="nm">FASTAPI / BACKENDS</span><span class="rr">EPIC</span></div>
-      <div class="item epic"><span class="ico">🦜</span><span class="nm">LLAMA.CPP / QUANTIZED MODELS</span><span class="rr">EPIC</span></div>
-      <div class="item rare"><span class="ico">🛠️</span><span class="nm">DEVOPS · DOCKER · GPU OPS</span><span class="rr">RARE</span></div>
-      <div class="item rare"><span class="ico">🔌</span><span class="nm">AUTOMATION & INTEGRATIONS</span><span class="rr">RARE</span></div>
+    <div class="sechead"><span class="num">03</span><h2>Inventory</h2>
+      <span class="fine">The loadout, ranked by how often I reach for it.</span></div>
+    <div class="rows">
+      <div class="row inv hoverable"><span class="rnum">I·1</span><h3>On-prem LLM / vLLM clusters</h3><span class="rr">Legendary</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·2</span><h3>RAG · pgvector · rerankers</h3><span class="rr">Legendary</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·3</span><h3>Autonomous agents</h3><span class="rr">Legendary</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·4</span><h3>Arabic NLP &amp; legal docs</h3><span class="rr">Epic</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·5</span><h3>FastAPI / backends</h3><span class="rr">Epic</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·6</span><h3>llama.cpp / quantized models</h3><span class="rr">Epic</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·7</span><h3>DevOps · Docker · GPU ops</h3><span class="rr">Rare</span></div>
+      <div class="row inv hoverable"><span class="rnum">I·8</span><h3>Automation &amp; integrations</h3><span class="rr">Rare</span></div>
     </div>
   </div>
 </section>
@@ -331,64 +292,69 @@ footer .tiny{color:var(--muted);font-size:12px}
 <!-- LEVELS -->
 <section id="levels">
   <div class="wrap">
-    <div class="sechead"><span class="tag">// 04</span><h2>LEVELS <em>CLEARED</em></h2>
-      <p class="fine">Real shipped systems. Ask about any of them on the call — I'll walk you through the guts.</p></div>
-    <div class="cards">
-      <div class="level"><span class="num">LVL 1</span>
-        <h3>AI ARM — ARABIC RAG PLATFORM</h3>
-        <p>Self-hosted document intelligence for Arabic legal & business files: FastAPI + pgvector + embedding & reranker models, on a private GPU cluster. 128 GB unified memory of "your data stays home".</p>
-        <span class="clear">✔ CLEARED — RUNNING IN PRODUCTION</span></div>
-      <div class="level"><span class="num">LVL 2</span>
-        <h3>THE GPU ARSENAL</h3>
-        <p>Multi-node NVIDIA GB10 cluster running large quantized LLMs for daily work — inference, agents, RAG, all offline. I broke it, fixed it, and automated the fixing.</p>
-        <span class="clear">✔ CLEARED — UPTIME MY BLOOD PRESSURE</span></div>
-      <div class="level"><span class="num">LVL 3</span>
-        <h3>ODIN — PERSONAL SUPER-AGENT</h3>
-        <p>An autonomous agent with terminal, browser, memory and scheduled missions — it writes this page's ancestor sites, triages work and files reports while I sleep.</p>
-        <span class="clear">✔ CLEARED — IT LITERALLY BUILT THIS SITE</span></div>
-      <div class="level"><span class="num">LVL 4</span>
-        <h3>SANDSTORM ARCADE</h3>
-        <p>A zero-dependency browser game portal built for my two sons (7 & 9): custom Canvas engine, procedural assets, boss fights. Proof I can make software fun, not just useful.</p>
-        <span class="clear">✔ CLEARED — KID-APPROVED (TOUGHEST QA TEAM ALIVE)</span></div>
+    <div class="sechead"><span class="num">04</span><h2>Levels<br>Cleared</h2>
+      <span class="fine">Real shipped systems. Ask about any of them on the call.</span></div>
+    <div class="rows">
+      <div class="row level hoverable"><span class="rnum">L·1</span><h3>AI Arm — Arabic RAG platform</h3>
+        <span class="rmeta">Self-hosted document intelligence for Arabic legal &amp; business files: FastAPI + pgvector + embedding &amp; reranker models on a private GPU cluster.</span>
+        <span class="clear">Running in prod</span></div>
+      <div class="row level hoverable"><span class="rnum">L·2</span><h3>The GPU Arsenal</h3>
+        <span class="rmeta">Multi-node NVIDIA GB10 cluster running large quantized LLMs — inference, agents, RAG, all offline. I broke it, fixed it, automated the fixing.</span>
+        <span class="clear">24/7 uptime</span></div>
+      <div class="row level hoverable"><span class="rnum">L·3</span><h3>Odin — personal super-agent</h3>
+        <span class="rmeta">Autonomous agent with terminal, browser, memory and scheduled missions. It wrote the previous version of this page.</span>
+        <span class="clear">Shipped</span></div>
+      <div class="row level hoverable"><span class="rnum">L·4</span><h3>Sandstorm Arcade</h3>
+        <span class="rmeta">Zero-dependency browser game portal for my two sons (7 &amp; 9): custom Canvas engine, procedural assets, boss fights.</span>
+        <span class="clear">Kid-approved</span></div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process">
+<!-- RECEIPTS / STATS -->
+<section id="receipts">
   <div class="wrap">
-    <div class="sechead"><span class="tag">// 05</span><h2>HOW THE <em>RAID</em> GOES</h2></div>
-    <div class="proc">
-      <div><span class="pnum">1</span><span class="ptx">BRIEF</span><span class="psub">Call + written scope. You describe the pain, I translate it into a build sheet.</span></div>
-      <div><span class="pnum">2</span><span class="ptx">PROTOTYPE</span><span class="psub">Working demo fast — days, not weeks. You see it before you fund it further.</span></div>
-      <div><span class="pnum">3</span><span class="ptx">SHIP</span><span class="psub">Hardened, deployed, documented. Tests exist. Your data stays yours.</span></div>
-      <div><span class="pnum">4</span><span class="ptx">HANDOVER</span><span class="psub">Your team can run it without me. Support is a choice, not a hostage.</span></div>
+    <div class="sechead"><span class="num">05</span><h2>Receipts</h2>
+      <span class="fine">No trophy case — just things that shipped and stayed shipped.</span></div>
+    <div class="rows" style="margin-bottom:64px">
+      <div class="row receipt"><span class="rnum">R·1</span><h3>Full Arabic RAG platform, self-hosted, in daily production use</h3><span class="who">AI Arm</span></div>
+      <div class="row receipt"><span class="rnum">R·2</span><h3>Multi-node GB10 GPU cluster, ops-hardened, runs large models offline</h3><span class="who">Home lab</span></div>
+      <div class="row receipt"><span class="rnum">R·3</span><h3>Autonomous agent handling real dev &amp; reporting workstreams</h3><span class="who">Odin</span></div>
+      <div class="row receipt"><span class="rnum">R·4</span><h3>Game portal QA-tested by two boys aged 7 and 9 — the toughest QA team alive</h3><span class="who">Sandstorm</span></div>
+    </div>
+    <div class="rows">
+      <div class="stat"><span class="rnum">S·1</span><h3>Agentic systems</h3><div class="segbar" data-fill="9"></div></div>
+      <div class="stat"><span class="rnum">S·2</span><h3>RAG &amp; retrieval</h3><div class="segbar" data-fill="9"></div></div>
+      <div class="stat"><span class="rnum">S·3</span><h3>On-prem LLM ops</h3><div class="segbar" data-fill="10"></div></div>
+      <div class="stat"><span class="rnum">S·4</span><h3>Arabic NLP</h3><div class="segbar" data-fill="10"></div></div>
+      <div class="stat"><span class="rnum">S·5</span><h3>Full-stack delivery</h3><div class="segbar" data-fill="9"></div></div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer id="contact">
-  <div class="wrap">
-    <div class="big">GAME OVER?<br>CONTINUE →</div>
-    <div class="links">
-      <button class="coinbtn" data-book="intro">🪙 BOOK A CALL</button>
-      <a href="https://t.me/Odin638329bot" target="_blank" rel="noopener">TELEGRAM</a>
-      <a href="https://github.com/" target="_blank" rel="noopener">GITHUB</a>
-      <a href="https://x.com/" target="_blank" rel="noopener">X / TWITTER</a>
-      <a href="mailto:hello@example.com">EMAIL</a>
-    </div>
-    <p class="tiny">© Abdulrahman · Master Brainer · Riyadh, GMT+3 — built by Odin, my AI arm, on a Friday.</p>
+  <div class="rock"><span>Insert</span><span>Coin</span></div>
+  <div class="contact-line">Available for freelance work → <a href="mailto:hello@masterbrainer.dev">hello@masterbrainer.dev</a></div>
+  <div class="links">
+    <button class="coinbtn" data-book="intro">Book a call</button>
+    <a href="https://t.me/Odin638329bot" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://github.com/daSonne" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://x.com/" target="_blank" rel="noopener">X / Twitter</a>
   </div>
+  <div class="monogram">MB</div>
+  <p class="tiny">© Abdulrahman · Master Brainer · Riyadh, GMT+3 — v2, art-directed from a pink poster.</p>
 </footer>
+
+</main>
 
 <!-- BOOKING MODAL -->
 <div id="modal" role="dialog" aria-modal="true" aria-label="Booking">
   <div class="mbox">
-    <div class="mhead"><span class="t" id="mtitle">SELECT TIME · INSERT COIN</span><button id="mclose">✕ QUIT</button></div>
+    <div class="mhead"><span id="mtitle">Insert coin</span><button id="mclose">Quit</button></div>
     <iframe id="mframe" title="Calendly booking" style="display:none"></iframe>
     <div id="mempty">
-      <span class="pix">🪙 COIN SLOT UNDER CONSTRUCTION</span>
+      <span class="disp">Coin slot under construction</span>
       <p>The calendar isn't wired yet. Ping me on <a href="https://t.me/Odin638329bot" target="_blank" rel="noopener">Telegram</a> or email me and we'll lock a time manually.</p>
     </div>
   </div>
@@ -397,80 +363,46 @@ footer .tiny{color:var(--muted);font-size:12px}
 <script>
 /* ============ CONFIG — Master Brainer fills these ============ */
 const CALENDLY_URL = ""; // e.g. "https://calendly.com/masterbrainer/recon-call"
-const MISSION_URLS = {   // optional per-mission links; falls back to CALENDLY_URL
-  intro: "", gig: "", boss: ""
-};
+const MISSION_URLS = { intro: "", gig: "", boss: "" };
 /* ============================================================= */
 
-/* --- boot sequence --- */
-const boot=document.getElementById('boot'), log=document.getElementById('bootlog'),
-      start=document.getElementById('startbtn');
-let li=0;
-(function typeNext(){
-  const lines=log.children;
-  if(li<lines.length){lines[li++].classList.add('on');setTimeout(typeNext,420);}
-  else start.classList.add('show');
+/* binary rain columns */
+(function(){
+  let s=987654321;const rnd=()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^s>>>15,1|s);
+    t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};
+  const chars="01";
+  for(const id of ['rain1','rain2']){
+    const el=document.getElementById(id);
+    el.textContent=Array.from({length:96},()=>chars[Math.floor(rnd()*2)]).join(' ');
+  }
 })();
-function startBoot(){boot.classList.add('done');try{blip(880,.12);}catch(e){}setTimeout(()=>{try{boot.remove();}catch(e){}},600);}
-start.addEventListener('click',startBoot);
-if(/[?&]skip=1/.test(location.search))startBoot();
 
-/* --- burger --- */
+/* invert toggle */
+const invertBtn=document.getElementById('invert');
+invertBtn.addEventListener('click',()=>{
+  const on=document.documentElement.dataset.invert==='1';
+  document.documentElement.dataset.invert=on?'0':'1';
+  try{localStorage.setItem('mb-invert',on?'0':'1');}catch(e){}
+});
+try{if(localStorage.getItem('mb-invert')==='1')document.documentElement.dataset.invert='1';}catch(e){}
+
+/* burger */
 document.getElementById('burger').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 
-/* --- ticker duplicate for seamless loop --- */
-const tick=document.getElementById('tick');tick.innerHTML+=tick.innerHTML;
+/* segmented stat bars */
+document.querySelectorAll('.segbar').forEach(b=>{
+  const fill=+b.dataset.fill||9;
+  for(let i=0;i<10;i++){const i2=document.createElement('i');if(i<fill)i2.classList.add('on');b.appendChild(i2);}
+});
 
-/* --- procedural pixel avatar --- */
-(function(){
-  const c=document.getElementById('avatar'),x=c.getContext('2d');
-  let seed=0;for(const ch of 'ABDULRAHMAN-MASTER-BRAINER')seed=(seed*31+ch.charCodeAt(0))>>>0;
-  const rnd=()=>{seed=(seed+0x6D2B79F5)>>>0;let t=Math.imul(seed^seed>>>15,1|seed);
-    t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};
-  const pal=['#120e1f','#ff3fa4','#31e5ff','#ffc93f','#9dff3f','#f5f0ff'];
-  const skin='#c98d5a',hair='#1a1430';
-  const grid=[];
-  for(let r=0;r<16;r++){grid[r]=[];for(let col=0;col<8;col++)grid[r][col]=rnd();}
-  x.fillStyle='#1a1430';x.fillRect(0,0,16,16);
-  for(let r=0;r<16;r++)for(let col=0;col<8;col++){
-    const v=grid[r][col];let c6=null;
-    if(r<4)v<0.30?c6=hair:v<0.34?c6=pal[3]:null;            // crown/hair w gold flecks
-    else if(r<10)v<0.55?c6=skin:v<0.60?c6=pal[1]:null;       // face + pink pixels
-    else if(r<13)v<0.5?c6=pal[2]:v<0.56?c6=pal[4]:null;      // torso cyan + lime
-    else v<0.45?c6='#0a0718':v<0.5?c6=pal[2]:null;           // base
-    if(c6){x.fillStyle=c6;x.fillRect(col,r,1,1);x.fillRect(15-col,r,1,1);}
-  }
-  x.fillStyle='#ffc93f';x.fillRect(6,13,4,1);x.fillRect(7,14,2,1); // belt buckle
-})();
-
-/* --- stat bars reveal (timer-based: works even where IO is throttled) --- */
-setTimeout(()=>document.querySelectorAll('.bar i').forEach(b=>{
-  if(/[?&]instant=1/.test(location.search))b.style.transition='none';
-  b.style.width=b.dataset.w+'%';
-}),700);
-
-/* --- sound --- */
-let soundOn=true,ac;
-function blip(f,d,type='square'){
-  if(!soundOn)return;
-  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();
-  const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=f;
-  g.gain.setValueAtTime(.06,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d);
-  o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+d);}catch(e){}
-}
-const sndBtn=document.getElementById('sound');
-sndBtn.addEventListener('click',()=>{soundOn=!soundOn;sndBtn.textContent=soundOn?'♪':'✕';blip(660,.1);});
-document.querySelectorAll('button,a.coinbtn,.cartbtn').forEach(b=>b.addEventListener('mouseenter',()=>blip(520,.05)));
-
-/* --- booking modal --- */
+/* booking modal */
 const modal=document.getElementById('modal'),frame=document.getElementById('mframe'),
       empty=document.getElementById('mempty'),mtitle=document.getElementById('mtitle');
-const TITLES={intro:'RECON CALL · 15 MIN',gig:'GIG RUN · FIXED SCOPE',boss:'BOSS RAID · ENGAGEMENT'};
+const TITLES={intro:'Recon call · 15 min',gig:'Gig run · fixed scope',boss:'Boss raid · engagement'};
 document.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>{
   const m=b.dataset.book,url=MISSION_URLS[m]||CALENDLY_URL;
-  mtitle.textContent=(TITLES[m]||'BOOK A CALL')+' · INSERT COIN';
-  blip(990,.15);
+  mtitle.textContent=TITLES[m]||'Insert coin';
   if(url){frame.src=url;frame.style.display='block';empty.style.display='none';}
   else{frame.style.display='none';empty.style.display='flex';}
   modal.classList.add('open');
