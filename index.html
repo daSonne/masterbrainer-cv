@@ -21,6 +21,7 @@
   --rail:14px; --cell:64px;
 }
 html[data-invert="1"]{ --field:var(--black); --ink:var(--pink); }
+html[data-pal="white"]{ --pink:#f2eee9; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 html.is-scroll-blocked{overflow:hidden}
@@ -79,9 +80,9 @@ main{background:var(--field);position:relative;z-index:1}
 .socials a:hover{background:var(--ink);color:var(--field)}
 .socials svg{width:13px;height:13px;fill:currentColor}
 #qr{width:52px;height:52px;border:1px solid var(--ink);image-rendering:pixelated}
-#invert{border:1px solid var(--ink);padding:5px 12px;font-family:var(--disp);font-weight:700;
+#invert,#palette{border:1px solid var(--ink);padding:5px 12px;font-family:var(--disp);font-weight:700;
   text-transform:uppercase;letter-spacing:.18em;font-size:11px;line-height:1}
-#invert:hover{background:var(--ink);color:var(--field)}
+#invert:hover,#palette:hover{background:var(--ink);color:var(--field)}
 #burger{display:none;font-size:20px;line-height:1;padding:5px 11px;border:1px solid var(--ink)}
 
 /* ============ HERO ============ */
@@ -265,6 +266,7 @@ footer .tiny{font-size:12px;opacity:.7}
       <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 16 16"><path d="M9.6 6.9 15.2 0h-1.7L8.8 5.8 4.8 0H0l5.9 8.6L0 16h1.7l5-5.9 4 5.9H16L9.6 6.9zm-2.3 2.8-.6-.9-4.7-6.7h2.6l4.4 6.3.6.9 4.8 6.8h-2.6L7.3 9.7z"/></svg></a>
     </span>
     <img id="qr" src="qr-site.png" alt="QR code — this site">
+    <button id="palette" title="switch theme color">White</button>
     <button id="invert" title="invert colors">Invert</button>
     <button id="burger" aria-label="menu">≡</button>
   </div>
@@ -635,6 +637,20 @@ invertBtn.addEventListener('click',()=>{
   try{localStorage.setItem('mb-invert',on?'0':'1');}catch(e){}
 });
 try{if(localStorage.getItem('mb-invert')==='1')document.documentElement.dataset.invert='1';}catch(e){}
+
+/* ---------- palette toggle: pink <-> white ---------- */
+const palBtn=document.getElementById('palette'),qrImg=document.getElementById('qr');
+function applyPal(p){
+  document.documentElement.dataset.pal=p;
+  palBtn.textContent=p==='white'?'Pink':'White';
+  if(qrImg)qrImg.src=p==='white'?'qr-site-white.png':'qr-site.png';
+}
+palBtn.addEventListener('click',()=>{
+  const next=document.documentElement.dataset.pal==='white'?'pink':'white';
+  applyPal(next);
+  try{localStorage.setItem('mb-pal',next);}catch(e){}
+});
+try{if(localStorage.getItem('mb-pal')==='white')applyPal('white');}catch(e){}
 
 /* ---------- burger ---------- */
 document.getElementById('burger').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
